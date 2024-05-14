@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RUBY_MODULE" version="4">
+  <component name="ModuleRunConfigurationManager">
+    <shared />
+  </component>
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/features" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="rubygems-update (v3.5.10, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sinatra-contrib (v4.0.0, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sqlite3 (v2.0.1, rbenv: 3.3.1) [gem]" level="application" />
+  </component>
+  <component name="RakeTasksCache-v2">
+    <option name="myRootTask">
+      <RakeTaskImpl id="rake">
+        <subtasks>
+          <RakeTaskImpl description="list of authors" fullCommand="authors[commit_range,format,sep]" id="authors[commit_range,format,sep]" />
+          <RakeTaskImpl description="Remove any temporary products" fullCommand="clean" id="clean" />
+          <RakeTaskImpl description="Remove any generated files" fullCommand="clobber" id="clobber" />
+          <RakeTaskImpl description="Generate RDoc under doc/api" fullCommand="doc" id="doc" />
+          <RakeTaskImpl id="install">
+            <subtasks>
+              <RakeTaskImpl description="Build and install all of the gems as local gems" fullCommand="install:all" id="all" />
+              <RakeTaskImpl description="Build and install rack-protection as local gem" fullCommand="install:rack-protection" id="rack-protection" />
+              <RakeTaskImpl description="Build and install sinatra as local gem" fullCommand="install:sinatra" id="sinatra" />
+              <RakeTaskImpl description="Build and install sinatra-contrib as local gem" fullCommand="install:sinatra-contrib" id="sinatra-contrib" />
+            </subtasks>
+          </RakeTaskImpl>
+          <RakeTaskImpl id="package">
+            <subtasks>
+              <RakeTaskImpl description="Build all packages" fullCommand="package:all" id="all" />
+              <RakeTaskImpl description="Build rack-protection packages" fullCommand="package:rack-protection" id="rack-protection" />
+              <RakeTaskImpl description="Build sinatra packages" fullCommand="package:sinatra" id="sinatra" />
+              <RakeTaskImpl description="Build sinatra-contrib packages" fullCommand="package:sinatra-contrib" id="sinatra-contrib" />
+            </subtasks>
+          </RakeTaskImpl>
+          <RakeTaskImpl id="release">
+            <subtasks>
+              <RakeTaskImpl description="Release all gems as packages" fullCommand="release:all" id="all" />
+              <RakeTaskImpl description="Commits the version to git (no push)" fullCommand="release:commit_version" id="commit_version" />
+              <RakeTaskImpl description="Release rack-protection as a package" fullCommand="release:rack-protection" id="rack-protection" />
+              <RakeTaskImpl description="Release sinatra as a package" fullCommand="release:sinatra" id="sinatra" />
+              <RakeTaskImpl description="Release sinatra-contrib as a package" fullCommand="release:sinatra-contrib" id="sinatra-contrib" />
+              <RakeTaskImpl description="Tags the version in git (no push)" fullCommand="release:tag_version" id="tag_version" />
+              <RakeTaskImpl description="Watch the release workflow run" fullCommand="release:watch" id="watch" />
+            </subtasks>
+          </RakeTaskImpl>
+          <RakeTaskImpl description="Run the test suite" fullCommand="test" id="test" />
+          <RakeTaskImpl id="test">
+            <subtasks>
+              <RakeTaskImpl description="Print out the test command" fullCommand="test:cmd" id="cmd" />
+              <RakeTaskImpl description="Run the test suite" fullCommand="test:core" id="core" />
+              <RakeTaskImpl id="core">
+                <subtasks>
+                  <RakeTaskImpl description="Print out the test command" fullCommand="test:core:cmd" id="cmd" />
+                  <RakeTaskImpl description="Show which test files fail when run in isolation" fullCommand="test:core:isolated" id="isolated" />
+                  <RakeTaskImpl description="Show bottom 25 tests wrt time" fullCommand="test:core:slow" id="slow" />
+                  <RakeTaskImpl description="" fullCommand="test:core:deps" id="deps" />
+                </subtasks>
+              </RakeTaskImpl>
+              <RakeTaskImpl description="Measures test coverage" fullCommand="test:coverage" id="coverage" />
+              <RakeTaskImpl description="Show which test files fail when run in isolation" fullCommand="test:isolated" id="isolated" />
+              <RakeTaskImpl description="Show bottom 25 tests wrt time" fullCommand="test:slow" id="slow" />
+              <RakeTaskImpl description="" fullCommand="test:deps" id="deps" />
+            </subtasks>
+          </RakeTaskImpl>
+          <RakeTaskImpl id="thanks[release">
+            <subtasks>
+              <RakeTaskImpl description="list of contributors" fullCommand="thanks[release:all,backports]" id="all,backports]" />
+            </subtasks>
+          </RakeTaskImpl>
+          <RakeTaskImpl description="generates TOC" fullCommand="toc[readme]" id="toc[readme]" />
+          <RakeTaskImpl description="" fullCommand="add_template" id="add_template" />
+          <RakeTaskImpl description="" fullCommand="authors" id="authors" />
+          <RakeTaskImpl description="" fullCommand="default" id="default" />
+          <RakeTaskImpl id="doc">
+            <subtasks>
+              <RakeTaskImpl description="" fullCommand="doc:api" id="api" />
+            </subtasks>
+          </RakeTaskImpl>
+          <RakeTaskImpl description="" fullCommand="pkg/" id="pkg/" />
+          <RakeTaskImpl description="" fullCommand="pkg/rack-protection-4.0.0.gem" id="pkg/rack-protection-4.0.0.gem" />
+          <RakeTaskImpl description="" fullCommand="pkg/rack-protection-4.0.0.tar.gz" id="pkg/rack-protection-4.0.0.tar.gz" />
+          <RakeTaskImpl description="" fullCommand="pkg/sinatra-4.0.0.gem" id="pkg/sinatra-4.0.0.gem" />
+          <RakeTaskImpl description="" fullCommand="pkg/sinatra-4.0.0.tar.gz" id="pkg/sinatra-4.0.0.tar.gz" />
+          <RakeTaskImpl description="" fullCommand="pkg/sinatra-contrib-4.0.0.gem" id="pkg/sinatra-contrib-4.0.0.gem" />
+          <RakeTaskImpl description="" fullCommand="pkg/sinatra-contrib-4.0.0.tar.gz" id="pkg/sinatra-contrib-4.0.0.tar.gz" />
+          <RakeTaskImpl description="" fullCommand="thanks" id="thanks" />
+          <RakeTaskImpl description="" fullCommand="toc" id="toc" />
+        </subtasks>
+      </RakeTaskImpl>
+    </option>
+  </component>
+</module>

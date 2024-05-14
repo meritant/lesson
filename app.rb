@@ -1,43 +1,63 @@
 require 'rubygems'
 require 'sinatra'
+require 'sinatra/reloader'
+require 'sqlite3'
+
+
+def db_connect
+  db = SQLite3::Database.new 'barbershop.db'
+  db.results_as_hash = true
+  return db
+end
+
+def is_barber_exists? db, name
+  db.execute('select * from barber where name=?', [name]).length > 0
+end
+def seed_db db, barbers
+  barbers.each do |barber|
+    if !is_barber_exists? db, barber
+      db.execute 'insert into barber (name) values (?)', [barber]
+    end
+  end
+end
 
 configure do
-  enable :sessions
+  db = db_connect
+  db.execute 'CREATE TABLE IF NOT EXISTS
+  "user" (
+	"id"	INTEGER PRIMARY KEY AUTOINCREMENT,
+	"name"	text NOT NULL DEFAULT "Noname",
+	"phone"	TEXT NOT NULL,
+	"date_stamp"	TEXT DEFAULT CURRENT_TIMESTAMP,
+	"barber"	TEXT NOT NULL DEFAULT "no_one",
+	"color"	TEXT NOT NULL DEFAULT "#ffffff"
+  );'
+  db.execute 'CREATE TABLE IF NOT EXISTS
+  "barber" (
+	"id"	INTEGER,
+	"name"	TEXT NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+)'
+
+  seed_db db, ['Barov Suchka', 'Shmara Lulya', 'Soska Deep', 'Orange Stink', 'Borov Kurme']
 end
 
-helpers do
-  def username
-    session[:identity] ? session[:identity] : 'Hello stranger'
-  end
-end
 
-before '/secure/*' do
-  unless session[:identity]
-    session[:previous_url] = request.path
-    @error = 'Sorry, you need to be logged in to visit ' + request.path
-    halt erb(:login_form)
-  end
-end
 
 get '/' do
   erb 'Can you handle a <a href="/secure/place">secret</a>?'
 end
 
-get '/login/form' do
-  erb :login_form
+get '/book' do
+
+  # Loading list of barbers from database
+  db = db_connect
+  db.results_as_hash = true
+  @barber_list = db.execute 'select * from barber'
+
+  erb :book
 end
 
-post '/login/attempt' do
-  session[:identity] = params['username']
-  where_user_came_from = session[:previous_url] || '/'
-  redirect to where_user_came_from
-end
-
-get '/logout' do
-  session.delete(:identity)
-  erb "<div class='alert alert-message'>Logged out</div>"
-end
-
-get '/secure/place' do
+get '/customers' do
   erb 'This is a secret place that only <%=session[:identity]%> has access to!'
 end
