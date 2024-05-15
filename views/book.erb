@@ -1,4 +1,4 @@
-<form action="/visit" method="post">
+<form action="/book" method="post">
   <div class="mb-3">
     <label class="form-label">Your Name</label>
     <input type="text" name="username" value="<%= @username %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -38,8 +38,10 @@
     <option value="#dbadff">Purple</option>
     <option value="#e1e1e1">Gray</option>
   </select>
-
-  <button type="submit" class="btn btn-primary">Enroll</button>
+  <br />
+  <div class="d-flex justify-content-end">
+  <button type="submit" class="btn btn-success btn-lg">Enroll</button>
+  </div>
 </form>
 
 <script type="text/javascript">
@@ -47,7 +49,7 @@
     // AFTER page is loaded
     $(function(){
         // Hide all paragraphs and then show them with animation
-        $('input').hide().fadeIn();
+        $('input').hide().fadeIn(500);
         //color picker
         $('select[name="colorpicker"]').simplecolorpicker();
     });

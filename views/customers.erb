@@ -1,0 +1,29 @@
+<h3>Customers</h3>
+
+<br />
+
+<div class="container">
+  <h1>Appointments</h1>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Date</th>
+      <th scope="col">Barber</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Table rows will go here -->
+    <% @users.each do |user| %>
+      <tr>
+        <td><b><%= user['name'] %></b></td>
+        <td><%= user['phone'] %></td>
+        <td><%= user['date_stamp'] %></td>
+        <td><%= user['barber'] %></td>
+      </tr>
+    <% end %>
+    <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+</div>

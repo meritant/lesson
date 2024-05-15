@@ -53,11 +53,47 @@ get '/book' do
   # Loading list of barbers from database
   db = db_connect
   db.results_as_hash = true
-  @barber_list = db.execute 'select * from barber'
+  @barber_list = db.execute 'select * from barber order by name asc'
 
   erb :book
 end
+# Book POST
+post '/book' do
+
+  @username = params[:username]
+  @phone = params[:phone]
+  @datetime = params[:datetime]
+  @dresser = params[:dresser]
+  @color = params[:colorpicker]
+
+  # Created hash for each param error
+  hh = {username: 'Enter Name', phone: 'Enter phone', datetime: 'Enter time', dresser: 'Enter Dresser'}
+
+  # Creating a loop
+  hh.each_key do |key|
+    # Checking if params[] have an empty value
+    # if yes, assign error variable a message from the hash
+    if params[key] == ''
+      @error = hh[key]
+      # And return back to same page
+      return erb :book
+    end
+  end
+
+  # Inserting into table user
+  # Using ???? to protect from SQL Injection
+  db_connect.execute "insert into user (name, phone, date_stamp, barber, color)
+values (?, ?, ?, ?, ?)", [@username, @phone, @datetime, @dresser, @color]
+
+  erb "<b>Thank you for registration,</b>  <h4>#{@username}</h4> #{@phone}<br /> #{@datetime}<br /> Dresser - #{@dresser}<br /> color is #{@color}"
+end
+
 
 get '/customers' do
-  erb 'This is a secret place that only <%=session[:identity]%> has access to!'
+
+  db = db_connect
+  db.results_as_hash = true
+  @users = db.execute 'select * from user order by id desc'
+  erb :customers
+
 end
