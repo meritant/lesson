@@ -17,10 +17,12 @@
 
   <select class="form-select" name="dresser" aria-label="Default select example">
     # Generating list from DB
-    <option value="<%= @dresser %>" selected>Choose your dresser</option>
+    <option value="<%= @dresser %>">Choose your dresser</option>
+
     <% @barber_list.each do |barber| %>
       <option <%= @dresser == barber['name'] ? 'selected' : '' %>><%= barber['name'] %></option>
     <% end %>
+
   </select>
   <br />
   <label class="form-label">Choose your color:</label>

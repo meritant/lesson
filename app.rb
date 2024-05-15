@@ -10,6 +10,13 @@ def db_connect
   return db
 end
 
+before do
+  # Loading list of barbers from database
+  db = db_connect
+  db.results_as_hash = true
+  @barber_list = db.execute 'select * from barber order by name asc'
+end
+
 def is_barber_exists? db, name
   db.execute('select * from barber where name=?', [name]).length > 0
 end
@@ -49,11 +56,6 @@ get '/' do
 end
 
 get '/book' do
-
-  # Loading list of barbers from database
-  db = db_connect
-  db.results_as_hash = true
-  @barber_list = db.execute 'select * from barber order by name asc'
 
   erb :book
 end
